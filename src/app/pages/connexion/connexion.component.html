@@ -1,0 +1,25 @@
+<form class="container" [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill" class="py-4">
+    <mat-label>Email</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="email"
+      (keyup)="erreurLogin = false"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Mot de passe</mat-label>
+    <input
+      matInput
+      type="password"
+      formControlName="password"
+      (keyup)="erreurLogin = false"
+    />
+  </mat-form-field>
+
+  <mat-error *ngIf="erreurLogin">Mauvais login / mauvais password</mat-error>
+
+  <button type="submit" mat-raised-button color="primary">Se connecter</button>
+</form>

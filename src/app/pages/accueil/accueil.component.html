@@ -1,0 +1,70 @@
+<h2>Accueil</h2>
+
+{{ dateMaintenant | date : "dd/MM/yy" }}
+
+<div class="container">
+  <a
+    *ngIf="isAdmin"
+    mat-raised-button
+    routerLink="/ajout-utilisateur"
+    color="primary"
+  >
+    <mat-icon>add</mat-icon>Ajouter un utilisateur</a
+  >
+  <div class="row">
+    <div *ngFor="let utilisateur of listeUtilisateur" class="col-6 py-4 px-4">
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar></div>
+          <mat-card-title>
+            {{ utilisateur | majuscule }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            <span [class.titre-administrator]="utilisateur.role.id == 2"
+              >{{ utilisateur.role.name }}
+            </span>
+            <span>
+              <br />
+              Membre depuis
+              {{ utilisateur.createdAt | date : "dd/MM/yyyy" }} Mise à jour le :
+              {{ utilisateur.updatedAt }}
+            </span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <img
+          mat-card-image
+          [attr.src]="utilisateur.imageProfil"
+          alt="Photo de profil"
+        />
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz
+            breeds of dog from Japan. A small, agile dog that copes very well
+            with mountainous terrain, the Shiba Inu was originally bred for
+            hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a
+            *ngIf="isAdmin"
+            [routerLink]="['/edit-utilisateur', utilisateur.id]"
+            mat-raised-button
+            color="primary"
+          >
+            <mat-icon fontIcon="edit"></mat-icon>
+            Modifier
+          </a>
+          <button
+            *ngIf="isAdmin"
+            mat-raised-button
+            color="warn"
+            (click)="onDeleteUser(utilisateur.id)"
+          >
+            <mat-icon fontIcon="delete"></mat-icon>
+            Supprimer
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
