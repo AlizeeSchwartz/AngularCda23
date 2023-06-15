@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Sanitizer } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { utilisateur } from '../models/utilisateur';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
